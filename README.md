@@ -43,15 +43,15 @@ bankcard.cardBin("622305453434432224");
 
 ## 示例
 
-- [查询所有银行卡](https://www.caijinfeng.com/temp/bankcard/index.html#/1)
-- [仅查询【中国农业银行】【中国工商银行】非【62】开头的银行卡](https://www.caijinfeng.com/temp/bankcard/index.html#/2)
-- [仅查询【62】开头的信用卡](https://www.caijinfeng.com/temp/bankcard/index.html#/3)
-- [浏览器直接引入](./example/es5)
-- [node中使用](./example/node)
+- [查询所有银行卡](https://codesandbox.io/s/confident-cartwright-1uh1z?fontsize=14)
+- [仅查询【中国农业银行】【中国工商银行】非【62】开头的银行卡](https://codesandbox.io/s/mystifying-wave-czzzx?fontsize=14)
+- [仅查询【62】开头的信用卡](https://codesandbox.io/s/hardcore-keller-8ymxc?fontsize=14)
+- [浏览器直接引入](https://codesandbox.io/s/wizardly-fire-8mrnj?fontsize=14&hidenavigation=1&theme=dark)
+- [node中使用](https://codesandbox.io/s/youthful-wave-sb4ou?fontsize=14)
 
 ## API
 
-- **bank**
+**bank**
 
 银行列表
 
@@ -64,7 +64,7 @@ bankcard.cardBin("622305453434432224");
 ]
 ```
 
-- **cardType**
+**cardType**
 
 卡类型映射名称
 
@@ -77,7 +77,7 @@ bankcard.cardBin("622305453434432224");
 }
 ```
 
-- **bankCardBin**
+**bankCardBin**
 
 银行卡Bin列表
 
@@ -92,7 +92,7 @@ bankcard.cardBin("622305453434432224");
 ]
 ```
 
-- **format(*bankCardBinItem*)**
+**format(*bankCardBinItem*)**
 
 格式化银行卡信息，参数为卡bin。用于格式化 `cardBin` `validateCardInfo` 方法的返回值。
 
@@ -101,7 +101,7 @@ bankcard.cardBin("622305453434432224");
 format(bankCardBin[0])
 ```
 
-- **carBin(*cardNo=string*, *multiple=false*)**
+**carBin(*cardNo=''*, *multiple=false*)**
 
 根据银行卡卡号查询卡bin，适用于输入银行卡号匹配银行卡信息。
 
@@ -119,16 +119,16 @@ format(bankCardBin[0])
 
 如果第二个参数为 `true`，返回数组。无结果则返回 `[]`。*(不常用，仅少数不同银行的卡bin存在重复)*
 
-- **validateCardInfo(*cardNo=string*)**
+**validateCardInfo(*cardNo=''*)**
 
-验证银行卡卡号。
+验证银行卡号。返回：
 
 ```javascript
 {
   validated: boolean, // 验证结果
   message: string, // 错误信息
   
-  // 当卡bin查询到对应银行时，才有以下值
+  // 当卡bin查找有结果时，才有以下值
   bankName: string,
   bankCode: string,
   cardType: string,
@@ -143,7 +143,7 @@ format(bankCardBin[0])
 2. `找不到卡bin`：找不到该银行卡号
 4. `卡号长度不对`：该银行卡号长度为x为数字
 
-- **BankCardClass**
+**BankCardClass**
 
 银行卡类，可自定义规则，实例化不同场景。如：仅查询【中国农业银行】和【中国工商银行】，卡bin非【62】开头的银行卡，。
 
