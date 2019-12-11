@@ -1,0 +1,71 @@
+{
+  "name": "bankcard",
+  "version": "0.1.0",
+  "description": "通过银行卡号查询银行和卡类型，支持浏览器端和node",
+  "main": "lib/index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build:lib && rm -rf dist && npm run build:dist && npm run build:dist-development",
+    "build:lib": "rm -rf lib && babel src --out-dir lib",
+    "build:dist": "webpack --mode=production",
+    "build:dist-development": "webpack --mode=development",
+    "build:lib-development": "rm -rf lib && babel src --out-dir lib --source-maps",
+    "pub": "npm run build && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caijf/bankcard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/caijf/bankcard/issues"
+  },
+  "homepage": "https://github.com/caijf/bankcard#readme",
+  "dependencies": {
+    "lodash.filter": "^4.6.0",
+    "lodash.find": "^4.6.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-transform-modules-umd": "^7.2.0",
+    "@babel/preset-env": "^7.4.5",
+    "babel-loader": "^8.0.6",
+    "minimist": "^1.2.0",
+    "webpack": "^4.34.0",
+    "webpack-cli": "^3.3.4"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/env",
+        {
+          "targets": {
+            "browsers": [
+              "> 1%",
+              "last 4 versions",
+              "Firefox ESR",
+              "not ie < 9"
+            ]
+          }
+        }
+      ]
+    ],
+    "plugins": [
+      [
+        "@babel/transform-modules-umd",
+        {
+          "globals": {
+            "index": "utilHelpers"
+          },
+          "exactGlobals": true
+        }
+      ]
+    ]
+  }
+}
