@@ -2,7 +2,6 @@
 
 通过银行卡号查询银行卡信息，支持浏览器端（es5、es6）和node
 
-
 ## 安装
 
 ```shell
@@ -101,7 +100,7 @@ bankcard.cardBin("622305453434432224");
 format(bankCardBin[0])
 ```
 
-**carBin(*cardNo=''*, *multiple=false*)**
+**carBin(*cardNo*, *multiple=false*)**
 
 根据银行卡卡号查询卡bin，适用于输入银行卡号匹配银行卡信息。
 
@@ -119,7 +118,7 @@ format(bankCardBin[0])
 
 如果第二个参数为 `true`，返回数组。无结果则返回 `[]`。*(不常用，仅少数不同银行的卡bin存在重复)*
 
-**validateCardInfo(*cardNo=''*)**
+**validateCardInfo(*cardNo*)**
 
 验证银行卡号。返回：
 
@@ -137,7 +136,7 @@ format(bankCardBin[0])
 }
 ```
 
-其中 `message` 有以下情况
+`message` 有以下值
 
 1. `格式不正确（非0开头，15-19位数字）`：格式错误，银行卡号为15至19位数字
 2. `找不到卡bin`：找不到该银行卡号
@@ -145,7 +144,7 @@ format(bankCardBin[0])
 
 **BankCardClass**
 
-银行卡类，可自定义规则，实例化不同场景。如：仅查询【中国农业银行】和【中国工商银行】，卡bin非【62】开头的银行卡，。
+银行卡类，可自定义规则，实例化不同场景。如：仅查询【中国农业银行】和【中国工商银行】，卡bin非【62】开头的银行卡。
 
 ```javascript
 const bankcardInstance = new BankCardClass({
