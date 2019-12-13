@@ -33,7 +33,7 @@ npm install bankcard
 <script src="https://unpkg.com/browse/bankcard@2/dist/bankcard.min.js"></script>
 <script>
   const bc = bankcard.CardBin("10354");
-  bc.CardBin("622305453434432224");
+  bc.searchCardBin("622305453434432224");
   bc.validateCardInfo("622305453434432224");
 </script>
 ```
@@ -44,7 +44,7 @@ npm install bankcard
 import { CardBin } from 'bankcard';
 
 const bc = new CardBin();
-bc.cardBin("622305453434432224");
+bc.searchCardBin("622305453434432224");
 ```
 
 - **`umd` `node`**
@@ -53,7 +53,7 @@ bc.cardBin("622305453434432224");
 const { CardBin } = require('bankcard');
 
 const bc = new CardBin();
-bc.cardBin("622305453434432224");
+bc.searchCardBin("622305453434432224");
 ```
 
 ## 示例
