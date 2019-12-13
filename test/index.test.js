@@ -2,7 +2,7 @@ import {
   expect
 } from 'chai';
 
-import { bank, cardType, getAllCard, CardBin } from '../lib';
+import { bank, cardType, getAllCard, CardBin } from '../src';
 
 describe('bank', () => {
   it(`ABC 中国农业银行`, () => {
