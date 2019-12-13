@@ -1,9 +1,10 @@
-const bankcard = require('bankcard');
+const { CardBin, bank, cardType, getAllCard } = require('bankcard');
 
-const val = bankcard.cardBin('62128243546');
+const bc = new CardBin();
 
-console.log(val);
+const cardNo = '62128243546';
+const ret1 = bc.searchCardBin(cardNo);
+const ret2 = bc.validateCardInfo(cardNo);
 
-const bin1 = bankcard.format(bankcard.bankCardBin[0])
-
-console.log(bin1);
+console.log(ret1);
+console.log(ret2);

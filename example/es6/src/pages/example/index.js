@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from 'react-router-dom';
 
 import './styles.less';
@@ -15,7 +15,7 @@ const demoData = [
   },
   {
     id: '2',
-    text: '仅查询【中国农业银行】【中国工商银行】非【62】开头的银行卡',
+    text: '仅查询【中国农业银行】【中国工商银行】【62】开头的银行卡',
     component: Demo2
   },
   {

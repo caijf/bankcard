@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { bank, bankCardBin, cardBin, validateCardInfo } from 'bankcard';
+import { CardBin } from 'bankcard';
 import SyntaxHighlighter from "react-syntax-highlighter";
 import tomorrowNightEighties from "react-syntax-highlighter/dist/esm/styles/hljs/tomorrow-night-eighties";
-import DemoDescription from './DemoDescription';
+
+const bc = new CardBin();
 
 export default function Demo1() {
   const [cardNo, setCardNo] = useState('');
@@ -14,9 +15,9 @@ export default function Demo1() {
     const { value } = e.currentTarget;
     setCardNo(value);
 
-    const ret1 = cardBin(value);
-    const ret2 = cardBin(value, true);
-    const ret3 = validateCardInfo(value);
+    const ret1 = bc.searchCardBin(value);
+    const ret2 = bc.searchCardBin(value, true);
+    const ret3 = bc.validateCardInfo(value);
 
     setResultBin(JSON.stringify(ret1));
     setResultBinMultiple(JSON.stringify(ret2))
@@ -29,9 +30,9 @@ export default function Demo1() {
         <h2>查询所有银行卡号</h2>
         <p>存在部分不同银行的卡Bin相同，但卡号长度不同。如622303和622305，16位是南京银行，18位是中国工商银行</p>
         <input type="text" placeholder="请输入银行卡号" value={cardNo} onChange={handleChangeCardNo} />
-        <h3>cardBin(cardNo) - 匹配单个银行卡bin:</h3>
+        <h3>searchCardBin(cardNo) - 匹配单个银行卡bin:</h3>
         <div>{resultBin}</div>
-        <h3>cardBin(cardNo, true) - 匹配多个银行卡bin:</h3>
+        <h3>searchCardBin(cardNo, true) - 匹配多个银行卡bin:</h3>
         <div>{resultBinMultiple}</div>
         <h3>validateCardInfo(cardNo) - 校验银行卡号:</h3>
         <div>{resultCardInfo}</div>
@@ -39,7 +40,9 @@ export default function Demo1() {
 
         <SyntaxHighlighter language="javascript" style={tomorrowNightEighties}>
           {`import React from 'react';
-import { cardBin, validateCardInfo } from 'bankcard';
+import { CardBin } from 'bankcard';
+
+const bc = new CardBin();
 
 export default function Demo(){
   const [cardNo, setCardNo] = useState('');
@@ -51,9 +54,9 @@ export default function Demo(){
     const { value } = e.currentTarget;
     setCardNo(value);
 
-    const ret1 = cardBin(value);
-    const ret2 = cardBin(value, true);
-    const ret3 = validateCardInfo(value);
+    const ret1 = bc.searchCardBin(value);
+    const ret2 = bc.searchCardBin(value, true);
+    const ret3 = bc.validateCardInfo(value);
 
     setResultBin(JSON.stringify(ret1));
     setResultBinMultiple(JSON.stringify(ret2))
@@ -63,9 +66,9 @@ export default function Demo(){
   return (
     <>
       <input type="text" placeholder="请输入银行卡号" value={cardNo} onChange={handleChangeCardNo} />
-      <h3>cardBin(cardNo) - 匹配单个银行卡bin:</h3>
+      <h3>searchCardBin(cardNo) - 匹配单个银行卡bin:</h3>
       <div>{resultBin}</div>
-      <h3>cardBin(cardNo, true) - 匹配多个银行卡bin:</h3>
+      <h3>searchCardBin(cardNo, true) - 匹配多个银行卡bin:</h3>
       <div>{resultBinMultiple}</div>
       <h3>validateCardInfo(cardNo) - 校验银行卡号:</h3>
       <div>{resultCardInfo}</div>
@@ -73,7 +76,6 @@ export default function Demo(){
   )
 }`}
         </SyntaxHighlighter>
-      <DemoDescription bankCardInstance={{ bank, bankCardBin }} />
     </>
   );
 }

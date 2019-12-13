@@ -1,13 +1,13 @@
 {
   "name": "bankcard",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "通过银行卡号查询银行和卡类型，支持浏览器端和node",
   "main": "lib/index.js",
   "directories": {
     "example": "example"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --require @babel/register --recursive test/",
     "build": "npm run build:lib && rm -rf dist && npm run build:dist && npm run build:dist-development",
     "build:lib": "rm -rf lib && babel src --out-dir lib",
     "build:dist": "webpack --mode=production",
@@ -21,7 +21,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/caijf/bankcard/issues"
   },
@@ -35,8 +35,11 @@
     "@babel/core": "^7.4.5",
     "@babel/plugin-transform-modules-umd": "^7.2.0",
     "@babel/preset-env": "^7.4.5",
+    "@babel/register": "^7.7.4",
     "babel-loader": "^8.0.6",
+    "chai": "^4.2.0",
     "minimist": "^1.2.0",
+    "mocha": "^6.2.2",
     "webpack": "^4.34.0",
     "webpack-cli": "^3.3.4"
   },
@@ -61,7 +64,7 @@
         "@babel/transform-modules-umd",
         {
           "globals": {
-            "index": "utilHelpers"
+            "index": "bankcard"
           },
           "exactGlobals": true
         }

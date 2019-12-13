@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { BankCardClass } from 'bankcard';
+import { CardBin } from 'bankcard';
 import SyntaxHighlighter from "react-syntax-highlighter";
 import tomorrowNightEighties from "react-syntax-highlighter/dist/esm/styles/hljs/tomorrow-night-eighties";
-import DemoDescription from './DemoDescription';
 
-const bankcardInstance = new BankCardClass({
-  include: {
-    bin: /^62/,
-    type: 'CC'
+const regCardBin = /^62/;
+const supportCardType = 'CC';
+
+const bc = new CardBin({
+  filter: (data)=>{
+    return regCardBin.test(data.cardBin) && supportCardType === data.cardType;
   }
 });
 
@@ -21,9 +22,9 @@ export default function Demo3() {
     const { value } = e.currentTarget;
     setCardNo(value);
 
-    const ret1 = bankcardInstance.cardBin(value);
-    const ret2 = bankcardInstance.cardBin(value, true);
-    const ret3 = bankcardInstance.validateCardInfo(value);
+    const ret1 = bc.searchCardBin(value);
+    const ret2 = bc.searchCardBin(value, true);
+    const ret3 = bc.validateCardInfo(value);
 
     setResultBin(JSON.stringify(ret1));
     setResultBinMultiple(JSON.stringify(ret2));
@@ -35,9 +36,9 @@ export default function Demo3() {
       <div className="demo-box">
         <h2>仅查询【62】开头的信用卡</h2>
         <input type="text" placeholder="请输入银行卡号" value={cardNo} onChange={handleChangeCardNo} />
-        <h3>cardBin(cardNo) - 匹配单个银行卡bin:</h3>
+        <h3>searchCardBin(cardNo) - 匹配单个银行卡bin:</h3>
         <div>{resultBin}</div>
-        <h3>cardBin(cardNo, true) - 匹配多个银行卡bin:</h3>
+        <h3>searchCardBin(cardNo, true) - 匹配多个银行卡bin:</h3>
         <div>{resultBinMultiple}</div>
         <h3>validateCardInfo(cardNo) - 校验银行卡号:</h3>
         <div>{resultCardInfo}</div>
@@ -45,12 +46,14 @@ export default function Demo3() {
 
         <SyntaxHighlighter language="javascript" style={tomorrowNightEighties}>
           {`import React from 'react';
-import { BankCardClass } from 'bankcard';
+import { CardBin } from 'bankcard';
 
-const bankcardInstance = new BankCardClass({
-  include: {
-    bin: /^62/,
-    type: 'CC'
+const regCardBin = /^62/;
+const supportCardType = 'CC';
+
+const bc = new CardBin({
+  filter: (data)=>{
+    return regCardBin.test(data.cardBin) && supportCardType === data.cardType;
   }
 });
 
@@ -64,9 +67,9 @@ export default function Demo(){
     const { value } = e.currentTarget;
     setCardNo(value);
 
-    const ret1 = bankcardInstance.cardBin(value);
-    const ret2 = bankcardInstance.cardBin(value, true);
-    const ret3 = bankcardInstance.validateCardInfo(value);
+    const ret1 = bc.searchCardBin(value);
+    const ret2 = bc.searchCardBin(value, true);
+    const ret3 = bc.validateCardInfo(value);
 
     setResultBin(JSON.stringify(ret1));
     setResultBinMultiple(JSON.stringify(ret2))
@@ -76,9 +79,9 @@ export default function Demo(){
   return (
     <>
       <input type="text" placeholder="请输入银行卡号" value={cardNo} onChange={handleChangeCardNo} />
-      <h3>cardBin(cardNo) - 匹配单个银行卡bin:</h3>
+      <h3>searchCardBin(cardNo) - 匹配单个银行卡bin:</h3>
       <div>{resultBin}</div>
-      <h3>cardBin(cardNo, true) - 匹配多个银行卡bin:</h3>
+      <h3>searchCardBin(cardNo, true) - 匹配多个银行卡bin:</h3>
       <div>{resultBinMultiple}</div>
       <h3>validateCardInfo(cardNo) - 校验银行卡号:</h3>
       <div>{resultCardInfo}</div>
@@ -86,7 +89,6 @@ export default function Demo(){
   )
 }`}
         </SyntaxHighlighter>
-      <DemoDescription bankCardInstance={bankcardInstance} />
     </>
   );
 }

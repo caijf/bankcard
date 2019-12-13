@@ -17,6 +17,13 @@
     .demo-box:nth-child(2n+1){
       background: #f2f3f5;
     }
+    input {
+      width: 100%;
+      min-width: 250px;
+      box-sizing: border-box;
+      padding: 8px;
+      font-size: 16px;
+    }
   </style>
 </head>
 
@@ -24,57 +31,64 @@
   <div class="demo-box">
     <p>场景 1：查询所有银行卡号</p>
     <input type="text" placeholder="请输入银行卡号" id="cardNo">
-    <h3>cardBin - 匹配银行卡bin:</h3>
+    <h3>searchCardBin(cardNo) - 匹配银行卡bin:</h3>
     <div id="result1"></div>
-    <h3>validateCardInfo - 校验银行卡号:</h3>
+    <h3>validateCardInfo(cardNo) - 校验银行卡号:</h3>
     <div id="result2"></div>
   </div>
   <div class="demo-box">
     <p>场景 2：仅查询【中国农业银行】，并且排除【卡bin】为【103】的银行卡号</p>
     <input type="text" placeholder="请输入银行卡号" id="cardNo2">
-    <h3>cardBin - 匹配银行卡bin:</h3>
+    <h3>searchCardBin(cardNo) - 匹配银行卡bin:</h3>
     <div id="result3"></div>
-    <h3>validateCardInfo - 校验银行卡号:</h3>
+    <h3>validateCardInfo(cardNo) - 校验银行卡号:</h3>
     <div id="result4"></div>
   </div>
 
   <script src="../../dist/bankcard.js"></script>
   <script>
+    console.log('bankcard: ', bankcard);
+
     // 1 ----
+    var bc = new bankcard.CardBin();
+    console.log(bc);
+
     var oCardNo = document.querySelector('#cardNo');
     var oResult1 = document.querySelector('#result1');
     var oResult2 = document.querySelector('#result2');
 
-    console.log('bankcard: ', bankcard);
-
     oCardNo.addEventListener('keyup', function (e) {
       var value = e.target.value;
-      oResult1.innerHTML = JSON.stringify(bankcard.cardBin(value));
-      oResult2.innerHTML = JSON.stringify(bankcard.validateCardInfo(value));
+      oResult1.innerHTML = JSON.stringify(bc.searchCardBin(value));
+      oResult2.innerHTML = JSON.stringify(bc.validateCardInfo(value));
     }, false);
 
     // 2 -----
+    var bc2 = new bankcard.CardBin({
+      filter: function(data){
+        return data.bankCode === 'ABC' && data.cardBin !== '103';
+      }
+    });
+    console.log('bc2: ', bc2);
 
     var oCardNo2 = document.querySelector('#cardNo2');
     var oResult3 = document.querySelector('#result3');
     var oResult4 = document.querySelector('#result4');
 
-    var abcBankCard = new bankcard.BankCardClass({
-      include: {
-        bank: 'ABC'
-      },
-      exclude: {
-        bin: '103'
-      }
-    });
-
-    console.log('abcBankCard: ', abcBankCard);
-
     oCardNo2.addEventListener('keyup', function (e) {
       var value = e.target.value;
-      oResult3.innerHTML = JSON.stringify(abcBankCard.cardBin(value));
-      oResult4.innerHTML = JSON.stringify(abcBankCard.validateCardInfo(value));
+      oResult3.innerHTML = JSON.stringify(bc2.searchCardBin(value));
+      oResult4.innerHTML = JSON.stringify(bc2.validateCardInfo(value));
     }, false);
+
+    // 3 -----
+    console.log('getAllCard(): ', bankcard.getAllCard());
+
+    // 4 -----
+    console.log('bank: ', bankcard.bank);
+
+    // 5 -----
+    console.log('cardType: ', bankcard.cardType);
   </script>
 </body>
 

@@ -1,15 +1,2 @@
-import BankCardClass from './BankCardClass';
-import cardType from './data/cardType';
-
-const { bank, bankCardBin, format, cardBin, validateCardInfo } = new BankCardClass();
-
-export {
-  bank, 
-  bankCardBin, 
-  format,
-  cardBin, 
-  validateCardInfo,
-
-  cardType, 
-  BankCardClass
-};
+export { default as CardBin } from './CardBin';
+export { bank, cardType, getAllCard } from './data';
