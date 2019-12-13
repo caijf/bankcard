@@ -32,7 +32,7 @@ npm install bankcard
 ```javascript
 <script src="https://unpkg.com/browse/bankcard@2/dist/bankcard.min.js"></script>
 <script>
-  const bc = bankcard.CardBin("10354");
+  const bc = bankcard.CardBin();
   bc.searchCardBin("622305453434432224");
   bc.validateCardInfo("622305453434432224");
 </script>
@@ -162,7 +162,7 @@ bc.validateCardInfo("622305453434432224");
 银行卡数据，创建 `CardBin` 实例后生成，格式和 `getAllCard` 一样。
 
 
-- **searchCardBin(cardNo='', [multiple=false])**
+- **searchCardBin(*cardNo, [multiple=false]*)**
 
 根据银行卡号查询卡Bin，适用于输入银行卡号匹配银行卡信息。
 
