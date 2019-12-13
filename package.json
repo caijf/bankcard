@@ -19,8 +19,15 @@
     "type": "git",
     "url": "git+https://github.com/caijf/bankcard.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "bankcard",
+    "bank",
+    "cardType",
+    "CardBin",
+    "validateCardInfo",
+    "searchCardBin"
+  ],
+  "author": "caijf",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/caijf/bankcard/issues"
