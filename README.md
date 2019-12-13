@@ -11,8 +11,8 @@
 - [API](#API)
 	- [bank](#bank) - 所有银行的键值对
 	- [cardType](#cardType) - 所有卡类型的键值对
-	- [getAllCard()](#getAllCard()) - 获取全部银行卡
-	- [CardBin 类](#CardBin 类) - 用于创建银行卡卡Bin的实例
+	- [getAllCard()](#getAllCard()) - 获取全部银行卡信息
+	- [CardBin类](#CardBin类) - 用于创建银行卡卡Bin的实例
 - [其他](#其他)
 
 ## 安装
@@ -32,9 +32,9 @@ npm install bankcard
 ```javascript
 <script src="https://unpkg.com/browse/bankcard@2/dist/bankcard.min.js"></script>
 <script>
-	const bc = bankcard.CardBin("10354");
-	bc.CardBin("622305453434432224");
-	bc.validateCardInfo("622305453434432224");
+  const bc = bankcard.CardBin("10354");
+  bc.CardBin("622305453434432224");
+  bc.validateCardInfo("622305453434432224");
 </script>
 ```
 
@@ -92,7 +92,7 @@ bc.cardBin("622305453434432224");
 
 ### getAllCard()
 
-获取全部银行卡。
+获取全部银行卡信息。
 
 ```javascript
 [
@@ -107,7 +107,7 @@ bc.cardBin("622305453434432224");
 ]
 ```
 
-### CardBin 类
+### CardBin类
 
 用于创建银行卡卡Bin的实例。
 
@@ -200,7 +200,7 @@ bc.validateCardInfo("622305453434432224");
 }
 ```
 
-先查询卡Bin，然后校验格式，再校验卡Bin和卡号长度。`message` 有以下值：
+先查询卡Bin，然后校验格式，再校验卡Bin和卡号长度。如果验证失败 `validated` 为 `false`，`message` 有以下值：
 
 1. `格式不正确（15-19位数字）`：格式错误，银行卡号为15至19位数字
 2. `找不到卡bin`：找不到该银行卡号
