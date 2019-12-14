@@ -32,7 +32,7 @@ npm install bankcard
 ```javascript
 <script src="https://unpkg.com/browse/bankcard@2/dist/bankcard.min.js"></script>
 <script>
-  const bc = bankcard.CardBin();
+  const bc = new bankcard.CardBin();
   bc.searchCardBin("622305453434432224");
   bc.validateCardInfo("622305453434432224");
 </script>
