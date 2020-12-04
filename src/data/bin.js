@@ -737,6 +737,7 @@ export default [
   { "bin": "621037", "bank": "DAQINGB", "type": "DC", "length": 19 },
   { "bin": "621097", "bank": "DAQINGB", "type": "DC", "length": 19 },
   { "bin": "621588", "bank": "DAQINGB", "type": "DC", "length": 19 },
+  { "bin": "623518", "bank": "DAQINGB", "type": "DC", "length": 19 },
   { "bin": "622270", "bank": "DAQINGB", "type": "CC", "length": 16 },
   { "bin": "622475", "bank": "DAQINGB", "type": "DC", "length": 16 },
   { "bin": "622644", "bank": "DAQINGB", "type": "DC", "length": 19 },
