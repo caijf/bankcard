@@ -136,13 +136,20 @@ export default class CardBin {
   validateCardInfo(cardNo = '') {
     let ret = {
       validated: false,
+      errorCode: '',
       message: ''
     };
 
     const cardInfo = this.searchCardBin(cardNo);
 
     if (!cardInfo) {
-      ret.message = isBankCard(cardNo) ? '找不到该银行卡号' : '格式错误，银行卡号为15至19位数字';
+      if (isBankCard(cardNo)) {
+        ret.errorCode = '01';
+        ret.message = '找不到该银行卡号';
+      }else{
+        ret.errorCode = '02';
+        ret.message = '格式错误，银行卡号为15至19位数字';
+      }
 
       return ret;
     }
@@ -150,7 +157,13 @@ export default class CardBin {
     if (cardInfo.length === cardNo.length) {
       ret.validated = true;
     } else {
-      ret.message = isBankCard(cardNo) ? `该银行卡号长度为${cardInfo.length}位数字` : '格式错误，银行卡号为15至19位数字';
+      if(isBankCard(cardNo)){
+        ret.errorCode = '03';
+        ret.message = `该银行卡号长度为${cardInfo.length}位数字`;
+      }else{
+        ret.errorCode = '02';
+        ret.message = '格式错误，银行卡号为15至19位数字';
+      }
     }
 
     return {

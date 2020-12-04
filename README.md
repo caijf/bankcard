@@ -188,6 +188,7 @@ bc.validateCardInfo("622305453434432224");
 ```javascript
 {
   validated: boolean, // 验证结果
+  errorCode: string; // 错误码
   message: string, // 错误信息
   
   // 当卡Bin查询有结果时，才有以下值
@@ -200,11 +201,16 @@ bc.validateCardInfo("622305453434432224");
 }
 ```
 
-先查询卡Bin，然后校验格式，再校验卡Bin和卡号长度。如果验证失败 `validated` 为 `false`，`message` 有以下值：
+先查询卡Bin，然后校验格式，再校验卡Bin和卡号长度。如果验证失败 `validated` 为 `false` 。
 
-1. `格式不正确（15-19位数字）`：格式错误，银行卡号为15至19位数字
-2. `找不到卡bin`：找不到该银行卡号
-3. `卡号长度不对`：该银行卡号长度为x为数字
+`errorCode` `message` 有以下值：
+
+ errorCode | message | 错误原因 |
+---- | ---- | ---- |
+ 01 | 找不到该银行卡号 | 找不到卡bin |
+ 02 | 格式错误，银行卡号为15至19位数字 | 格式不正确（15-19位数字）|
+ 03 | 该银行卡号长度为x为数字 | 卡号长度不对|
+
 
 ## 其他
 
