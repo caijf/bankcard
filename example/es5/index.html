@@ -1,94 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <style>
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-    }
+      .demo-box {
+        padding: 10px;
+      }
 
-    .demo-box {
-      padding: 10px;
-    }
+      .demo-box:nth-child(2n + 1) {
+        background: #f2f3f5;
+      }
 
-    .demo-box:nth-child(2n+1) {
-      background: #f2f3f5;
-    }
+      input {
+        width: 100%;
+        min-width: 250px;
+        box-sizing: border-box;
+        padding: 8px;
+        font-size: 16px;
+      }
+    </style>
+  </head>
 
-    input {
-      width: 100%;
-      min-width: 250px;
-      box-sizing: border-box;
-      padding: 8px;
-      font-size: 16px;
-    }
-  </style>
-</head>
+  <body>
+    <div class="demo-box">
+      <p>场景 1：查询所有银行卡号。试试：103 、 403361</p>
+      <input type="text" placeholder="请输入银行卡号" id="cardNo" />
+      <h3>searchCardBin(cardNo) - 匹配银行卡bin:</h3>
+      <div id="result1"></div>
+      <h3>validateCardInfo(cardNo) - 校验银行卡号:</h3>
+      <div id="result2"></div>
+    </div>
+    <div class="demo-box">
+      <p>
+        场景 2：仅查询【中国农业银行】，并且排除【卡bin】为【103】的银行卡号。试试：103 、 403361
+      </p>
+      <input type="text" placeholder="请输入银行卡号" id="cardNo2" />
+      <h3>searchCardBin(cardNo) - 匹配银行卡bin:</h3>
+      <div id="result3"></div>
+      <h3>validateCardInfo(cardNo) - 校验银行卡号:</h3>
+      <div id="result4"></div>
+    </div>
 
-<body>
-  <div class="demo-box">
-    <p>场景 1：查询所有银行卡号。试试：103 、 403361</p>
-    <input type="text" placeholder="请输入银行卡号" id="cardNo">
-    <h3>searchCardBin(cardNo) - 匹配银行卡bin:</h3>
-    <div id="result1"></div>
-    <h3>validateCardInfo(cardNo) - 校验银行卡号:</h3>
-    <div id="result2"></div>
-  </div>
-  <div class="demo-box">
-    <p>场景 2：仅查询【中国农业银行】，并且排除【卡bin】为【103】的银行卡号。试试：103 、 403361</p>
-    <input type="text" placeholder="请输入银行卡号" id="cardNo2">
-    <h3>searchCardBin(cardNo) - 匹配银行卡bin:</h3>
-    <div id="result3"></div>
-    <h3>validateCardInfo(cardNo) - 校验银行卡号:</h3>
-    <div id="result4"></div>
-  </div>
+    <script src="../../dist/bankcard.js"></script>
+    <script>
+      console.log('bankcard: ', bankcard);
 
-  <script src="../../dist/bankcard.js"></script>
-  <script>
-    console.log('bankcard: ', bankcard);
+      // 1 ----
+      var oCardNo = document.querySelector('#cardNo');
+      var oResult1 = document.querySelector('#result1');
+      var oResult2 = document.querySelector('#result2');
 
-    // 1 ----
-    var oCardNo = document.querySelector('#cardNo');
-    var oResult1 = document.querySelector('#result1');
-    var oResult2 = document.querySelector('#result2');
+      oCardNo.addEventListener(
+        'keyup',
+        function (e) {
+          var value = e.target.value;
+          oResult1.innerHTML = JSON.stringify(bankcard.searchCardBin(value));
+          oResult2.innerHTML = JSON.stringify(bankcard.validateCardInfo(value));
+        },
+        false
+      );
 
-    oCardNo.addEventListener('keyup', function (e) {
-      var value = e.target.value;
-      oResult1.innerHTML = JSON.stringify(bankcard.searchCardBin(value));
-      oResult2.innerHTML = JSON.stringify(bankcard.validateCardInfo(value));
-    }, false);
+      // 2 -----
+      var data2 = bankcard.cards.filter(
+        (item) => item.bankCode === 'ABC' && item.cardBin !== '103'
+      );
 
-    // 2 -----
-    var data2 = bankcard.cards.filter(item => item.bankCode === 'ABC' && item.cardBin !== '103');
+      var oCardNo2 = document.querySelector('#cardNo2');
+      var oResult3 = document.querySelector('#result3');
+      var oResult4 = document.querySelector('#result4');
 
-    var oCardNo2 = document.querySelector('#cardNo2');
-    var oResult3 = document.querySelector('#result3');
-    var oResult4 = document.querySelector('#result4');
+      oCardNo2.addEventListener(
+        'keyup',
+        function (e) {
+          var value = e.target.value;
+          oResult3.innerHTML = JSON.stringify(bankcard.searchCardBin(value, { data: data2 }));
+          oResult4.innerHTML = JSON.stringify(bankcard.validateCardInfo(value, { data: data2 }));
+        },
+        false
+      );
 
-    oCardNo2.addEventListener('keyup', function (e) {
-      var value = e.target.value;
-      oResult3.innerHTML = JSON.stringify(bankcard.searchCardBin(value, { data: data2 }));
-      oResult4.innerHTML = JSON.stringify(bankcard.validateCardInfo(value, { data: data2 }));
-    }, false);
+      // 3 -----
+      console.log('cards: ', bankcard.cards);
 
-    // 3 -----
-    console.log('cards: ', bankcard.cards);
+      // 4 -----
+      console.log('banks: ', bankcard.banks);
 
-    // 4 -----
-    console.log('banks: ', bankcard.banks);
+      // 5 -----
+      console.log('CardType: ', bankcard.CardType);
 
-    // 5 -----
-    console.log('CardType: ', bankcard.CardType);
-
-    // 6 -----
-    console.log('CardTypeName: ', bankcard.CardTypeName);
-  </script>
-</body>
-
+      // 6 -----
+      console.log('CardTypeName: ', bankcard.CardTypeName);
+    </script>
+  </body>
 </html>
