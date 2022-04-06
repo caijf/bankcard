@@ -7,16 +7,20 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <style>
-    html,body{
+    html,
+    body {
       margin: 0;
       padding: 0;
     }
-    .demo-box{
+
+    .demo-box {
       padding: 10px;
     }
-    .demo-box:nth-child(2n+1){
+
+    .demo-box:nth-child(2n+1) {
       background: #f2f3f5;
     }
+
     input {
       width: 100%;
       min-width: 250px;
@@ -29,7 +33,7 @@
 
 <body>
   <div class="demo-box">
-    <p>场景 1：查询所有银行卡号</p>
+    <p>场景 1：查询所有银行卡号。试试：103 、 403361</p>
     <input type="text" placeholder="请输入银行卡号" id="cardNo">
     <h3>searchCardBin(cardNo) - 匹配银行卡bin:</h3>
     <div id="result1"></div>
@@ -37,7 +41,7 @@
     <div id="result2"></div>
   </div>
   <div class="demo-box">
-    <p>场景 2：仅查询【中国农业银行】，并且排除【卡bin】为【103】的银行卡号</p>
+    <p>场景 2：仅查询【中国农业银行】，并且排除【卡bin】为【103】的银行卡号。试试：103 、 403361</p>
     <input type="text" placeholder="请输入银行卡号" id="cardNo2">
     <h3>searchCardBin(cardNo) - 匹配银行卡bin:</h3>
     <div id="result3"></div>
@@ -50,26 +54,18 @@
     console.log('bankcard: ', bankcard);
 
     // 1 ----
-    var bc = new bankcard.CardBin();
-    console.log(bc);
-
     var oCardNo = document.querySelector('#cardNo');
     var oResult1 = document.querySelector('#result1');
     var oResult2 = document.querySelector('#result2');
 
     oCardNo.addEventListener('keyup', function (e) {
       var value = e.target.value;
-      oResult1.innerHTML = JSON.stringify(bc.searchCardBin(value));
-      oResult2.innerHTML = JSON.stringify(bc.validateCardInfo(value));
+      oResult1.innerHTML = JSON.stringify(bankcard.searchCardBin(value));
+      oResult2.innerHTML = JSON.stringify(bankcard.validateCardInfo(value));
     }, false);
 
     // 2 -----
-    var bc2 = new bankcard.CardBin({
-      filter: function(data){
-        return data.bankCode === 'ABC' && data.cardBin !== '103';
-      }
-    });
-    console.log('bc2: ', bc2);
+    var data2 = bankcard.cards.filter(item => item.bankCode === 'ABC' && item.cardBin !== '103');
 
     var oCardNo2 = document.querySelector('#cardNo2');
     var oResult3 = document.querySelector('#result3');
@@ -77,18 +73,21 @@
 
     oCardNo2.addEventListener('keyup', function (e) {
       var value = e.target.value;
-      oResult3.innerHTML = JSON.stringify(bc2.searchCardBin(value));
-      oResult4.innerHTML = JSON.stringify(bc2.validateCardInfo(value));
+      oResult3.innerHTML = JSON.stringify(bankcard.searchCardBin(value, { data: data2 }));
+      oResult4.innerHTML = JSON.stringify(bankcard.validateCardInfo(value, { data: data2 }));
     }, false);
 
     // 3 -----
-    console.log('getAllCard(): ', bankcard.getAllCard());
+    console.log('cards: ', bankcard.cards);
 
     // 4 -----
-    console.log('bank: ', bankcard.bank);
+    console.log('banks: ', bankcard.banks);
 
     // 5 -----
-    console.log('cardType: ', bankcard.cardType);
+    console.log('CardType: ', bankcard.CardType);
+
+    // 6 -----
+    console.log('CardTypeName: ', bankcard.CardTypeName);
   </script>
 </body>
 

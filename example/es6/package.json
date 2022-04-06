@@ -22,6 +22,6 @@
   },
   "devDependencies": {
     "cross-env": "^5.2.0",
-    "doly-cli": "0.7.0"
+    "doly-cli": "^0.8.5"
   }
 }
