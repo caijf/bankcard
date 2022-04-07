@@ -51,7 +51,7 @@ searchCardBin('622305453434432224');
 `npm` 包的 `bankcard/dist` 目录下提供了 `bankcard.js` 以及 `bankcard.min.js`。你也可以通过 [UNPKG](https://unpkg.com/bankcard@latest/dist/) 进行下载。或者在测试中直接使用 [UNPKG 线上版本](https://unpkg.com/bankcard@latest/dist/bankcard.min.js)<sup>注意版本</sup> 。
 
 ```javascript
-<script src="https://unpkg.com/browse/bankcard@latest/dist/bankcard.min.js"></script>
+<script src="https://unpkg.com/bankcard@latest/dist/bankcard.min.js"></script>
 <script>
   bankcard.searchCardBin("622305453434432224");
   bankcard.validateCardInfo("622305453434432224");
