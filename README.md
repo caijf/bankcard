@@ -87,7 +87,7 @@ type CardInfo = {
 ```typescript
 searchCardBin(bankCardNo: string, options?: {
   multiple?: boolean;  // 支持查询多个值，返回结果将变成数组，默认 false 。不常用，仅少数不同银行的卡 bin 存在重复。
-  data?: typeof cards; // 自定义数据
+  data?: CardInfo[]; // 自定义数据
 });
 ```
 
@@ -101,7 +101,7 @@ _当 `multiple=true` ，返回：`CardInfo[]` 。_
 
 ```typescript
 validateCardInfo(bankCardNo: string, options?: {
-  data?: typeof cards; // 自定义数据
+  data?: CardInfo[]; // 自定义数据
 });
 ```
 
