@@ -4,17 +4,18 @@
 
 通过银行卡号查询银行卡信息，支持浏览器端（es5、es6）和 node
 
-- [安装](#安装)
-- [使用](#使用)
-- [示例](#示例)
-- [API](#API)
-  - [searchCardBin](#searchCardBin) - 根据银行卡号查询卡 Bin 的银行卡信息
-  - [validateCardInfo](#validateCardInfo) - 验证银行卡号
-  - [banks](#banks) - 全部银行列表
-  - [cards](#cards) - 全部银行卡信息列表
-  - [CardType](#CardType) - 卡类型
-  - [CardTypeName](#CardTypeName) - 卡类型名称
-- [其他](#其他)
+- [bankcard](#bankcard)
+  - [安装](#安装)
+  - [使用](#使用)
+  - [示例](#示例)
+  - [API](#api)
+    - [searchCardBin](#searchcardbin)
+    - [validateCardInfo](#validatecardinfo)
+    - [banks](#banks)
+    - [cards](#cards)
+    - [CardType](#cardtype)
+    - [CardTypeName](#cardtypename)
+  - [其他](#其他)
 
 ## 安装
 
@@ -69,14 +70,14 @@ searchCardBin('622305453434432224');
 ## API
 
 ```typescript
-typeof CardInfo = {
-  bankName: string, // 银行名称
-  bankCode: string, // 银行编码
-  cardBin: string, // 银行卡卡Bin
-  cardType: CardType, // 卡类型
-  cardTypeName: CardTypeName, // 卡类型名称
-  len: number // 卡号长度
-}
+type CardInfo = {
+  bankName: string; // 银行名称
+  bankCode: string; // 银行编码
+  cardBin: string; // 银行卡卡Bin
+  cardType: CardType; // 卡类型
+  cardTypeName: CardTypeName; // 卡类型名称
+  len: number; // 卡号长度
+};
 ```
 
 ### searchCardBin
@@ -150,7 +151,7 @@ CardInfo[];
 
 卡类型。
 
-```
+```typescript
 {
   DC: "DC",
   CC: "CC",
@@ -163,7 +164,7 @@ CardInfo[];
 
 卡类型名称。
 
-```
+```typescript
 {
   DC: "储蓄卡",
   CC: "信用卡",
