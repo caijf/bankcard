@@ -1,6 +1,6 @@
 {
   "name": "bankcard",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "通过银行卡号查询银行和卡类型，支持浏览器端和node",
   "main": "dist/bankcard.js",
   "module": "es/index.js",
