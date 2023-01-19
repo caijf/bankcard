@@ -3,9 +3,15 @@ import bin from './bin';
 import { CardType, CardTypeName } from './constants';
 
 const cards = bin.map((item) => {
-  const bank = banks.find((bankItem) => item.bank === bankItem.code);
+  let bankName = '';
+  banks.some((bankItem) => {
+    if (item.bank === bankItem.code) {
+      bankName = bankItem.name;
+    }
+  });
+
   return {
-    bankName: bank?.name || '',
+    bankName: bankName,
     bankCode: item.bank,
     cardBin: item.bin,
     cardType: item.type,

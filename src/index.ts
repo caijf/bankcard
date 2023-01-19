@@ -1,5 +1,5 @@
 import { banks, cards, CardType, CardTypeName } from './data';
-import isBankCard from './utils/isBankCard';
+import { isBankCard, normalizeString } from './utils';
 
 export type CardInfo = typeof cards[0];
 
@@ -37,25 +37,30 @@ export function searchCardBin(
   bankCardNo: string,
   options?: { multiple?: boolean; data?: typeof cards }
 ): null | CardInfo;
-export function searchCardBin(bankCardNo = '', { multiple = false, data = cards } = {}) {
-  const realBankCardNo = bankCardNo || '';
+export function searchCardBin(bankCardNo: string, { multiple = false, data = cards } = {}) {
+  const realBankCardNo = normalizeString(bankCardNo);
+  const isValid = realBankCardNo.length >= 3 && regNumber.test(realBankCardNo);
 
   if (multiple) {
-    if (realBankCardNo.length < 3 || !regNumber.test(realBankCardNo)) {
-      return [];
-    }
-    return data.filter((item) => matchCardBin(realBankCardNo, item.cardBin));
+    return isValid ? data.filter((item) => matchCardBin(realBankCardNo, item.cardBin)) : [];
   }
 
-  if (realBankCardNo.length < 3 || !regNumber.test(realBankCardNo)) {
-    return null;
+  let ret: any = null;
+  if (isValid) {
+    data.some((item) => {
+      if (matchCardBin(realBankCardNo, item.cardBin)) {
+        ret = item;
+        return true;
+      }
+      return false;
+    });
   }
-  return data.find((item) => matchCardBin(realBankCardNo, item.cardBin)) || null;
+  return ret;
 }
 
 // 验证银行卡号
 export function validateCardInfo(bankCardNo = '', { data = cards } = {}) {
-  const realBankCardNo = bankCardNo || '';
+  const realBankCardNo = normalizeString(bankCardNo);
 
   const ret = {
     validated: false,
@@ -63,7 +68,7 @@ export function validateCardInfo(bankCardNo = '', { data = cards } = {}) {
     message: ''
   };
 
-  let cardInfo = null;
+  let cardInfo: typeof cards[0] | null = null;
 
   if (!isBankCard(realBankCardNo)) {
     ret.errorCode = ValidateErrorInfo.FormatError.code;
@@ -75,7 +80,13 @@ export function validateCardInfo(bankCardNo = '', { data = cards } = {}) {
       ret.errorCode = ValidateErrorInfo.NotFound.code;
       ret.message = ValidateErrorInfo.NotFound.message;
     } else {
-      cardInfo = cardInfos.find((item) => item.len === realBankCardNo.length) || null;
+      cardInfos.some((item) => {
+        if (item.len === realBankCardNo.length) {
+          cardInfo = item;
+          return true;
+        }
+        return false;
+      });
 
       if (cardInfo) {
         ret.validated = true;
