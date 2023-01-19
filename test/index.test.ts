@@ -99,6 +99,13 @@ describe('searchCardBin', () => {
     expect(defineSearchCardBin(value1, true)).toEqual([]);
     expect(defineSearchCardBin(value2, true)).toEqual([data2]);
   });
+
+  it('undefined or null', () => {
+    // @ts-ignore
+    expect(searchCardBin()).toEqual(null);
+    // @ts-ignore
+    expect(searchCardBin(null)).toEqual(null);
+  });
 });
 
 describe('validateCardInfo', () => {

@@ -12,6 +12,7 @@
   ],
   "scripts": {
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "build": "npm run build:es && npm run build:lib && npm run build:umd",
     "build:es": "rm -rf es && tsc --outDir es -m esnext -d",
     "build:lib": "rm -rf lib && tsc --outDir lib -m commonjs -d",
