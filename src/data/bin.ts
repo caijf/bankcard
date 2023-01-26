@@ -1402,6 +1402,7 @@ export default [
   { bin: '621799', bank: 'PSBC', type: CardType.DC, len: 19 },
   { bin: '622150', bank: 'PSBC', type: CardType.DC, len: 19 },
   { bin: '622151', bank: 'PSBC', type: CardType.DC, len: 19 },
+  { bin: '622180', bank: 'PSBC', type: CardType.DC, len: 19 },
   { bin: '622181', bank: 'PSBC', type: CardType.DC, len: 19 },
   { bin: '622182', bank: 'PSBC', type: CardType.DC, len: 19 },
   { bin: '622187', bank: 'PSBC', type: CardType.DC, len: 19 },
