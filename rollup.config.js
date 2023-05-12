@@ -31,5 +31,11 @@ export default {
       plugins: [terser()]
     }
   ],
-  plugins: [resolve(), commonjs(), typescript({ compilerOptions: { target: 'es3' } })]
+  plugins: [
+    resolve(),
+    commonjs(),
+    typescript({
+      tsconfig: './tsconfig.build.json'
+    })
+  ]
 };
