@@ -19,14 +19,16 @@
 
 ## 安装
 
-```bash
+```shell
 npm install bankcard
 ```
 
-或
-
-```bash
+```shell
 yarn add bankcard
+```
+
+```shell
+pnpm add bankcard
 ```
 
 ## 使用
