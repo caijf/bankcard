@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/bankcard.svg)](https://npmjs.com/package/bankcard) ![GitHub](https://img.shields.io/github/license/caijf/bankcard.svg) [![Build Status](https://travis-ci.org/caijf/bankcard.svg?branch=master)](https://travis-ci.org/caijf/bankcard)
 
-通过银行卡号查询银行卡信息，支持浏览器端（es5、es6）和 node
+通过银行卡号查询银行卡信息，支持浏览器端和 node 端
 
 - [bankcard](#bankcard)
   - [安装](#安装)

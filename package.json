@@ -2,23 +2,22 @@
   "name": "bankcard",
   "version": "3.0.7",
   "description": "通过银行卡号查询银行和卡类型，支持浏览器端和node",
-  "main": "dist/bankcard.js",
-  "module": "es/index.js",
-  "types": "es/index.d.ts",
+  "main": "dist/bankcard.cjs.js",
+  "module": "dist/bankcard.esm.js",
+  "unpkg": "dist/bankcard.min.js",
+  "types": "types/index.d.ts",
   "files": [
-    "es",
-    "lib",
-    "dist"
+    "dist",
+    "types"
   ],
   "scripts": {
     "test": "jest --verbose",
     "test:coverage": "jest --coverage",
-    "build": "npm run build:es && npm run build:lib && npm run build:umd",
-    "build:es": "rm -rf es && tsc -p tsconfig.build.json --outDir es -m esnext -d",
-    "build:lib": "rm -rf lib && tsc -p tsconfig.build.json --outDir lib -m commonjs -d",
-    "build:umd": "rm -rf dist && rollup -c",
+    "build": "npm run build:dist && npm run build:types",
+    "build:dist": "rm -rf dist && rollup -c",
+    "build:types": "rm -rf types && tsc -p tsconfig.build.json --outDir types -d --emitDeclarationOnly",
     "prettier": "prettier --write **/*",
-    "lint:js": "eslint --ext .js,.jsx,.ts,.tsx src",
+    "lint:js": "eslint --ext .js,.mjs,.jsx,.ts,.tsx src",
     "lint-fix:js": "npm run lint:js -- --fix",
     "commit": "cz",
     "prepublishOnly": "npm test && npm run build",
@@ -27,8 +26,8 @@
   },
   "lint-staged": {
     "**/*.{css,less}": "stylelint --fix",
-    "**/*.{js,jsx,ts,tsx}": "eslint",
-    "**/*.{css,scss,less,js,jsx,ts,tsx,json,md}": "prettier -w"
+    "**/*.{js,mjs,jsx,ts,tsx}": "eslint",
+    "**/*.{css,scss,less,js,mjs,jsx,ts,tsx,json,md}": "prettier -w"
   },
   "config": {
     "commitizen": {

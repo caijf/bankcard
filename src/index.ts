@@ -1,7 +1,7 @@
 import { banks, cards, CardType, CardTypeName } from './data';
 import { isBankCard, normalizeString } from './utils';
 
-export type CardInfo = typeof cards[0];
+export type CardInfo = (typeof cards)[0];
 
 // 验证错误信息
 const ValidateErrorInfo = {
@@ -29,15 +29,15 @@ function matchCardBin(bankCardNo = '', cardBin = '') {
 // 根据传入的数据源，搜索银行卡信息
 // 存在部分不同银行的卡Bin相同，但卡号长度不同。如622303和622305，16位是南京银行，18位是中国工商银行。所以cardBin查询时，如果卡号输入不完整，只给第一个结果。
 // 当前有以下卡Bin存在重复：690755,622442,622425,622302,622308,622309,622510,622162,622307,622303,622305,621260
-export function searchCardBin(
+function searchCardBin(
   bankCardNo: string,
   options: { multiple: true; data?: typeof cards }
 ): CardInfo[];
-export function searchCardBin(
+function searchCardBin(
   bankCardNo: string,
   options?: { multiple?: boolean; data?: typeof cards }
 ): null | CardInfo;
-export function searchCardBin(bankCardNo: string, { multiple = false, data = cards } = {}) {
+function searchCardBin(bankCardNo: string, { multiple = false, data = cards } = {}) {
   const realBankCardNo = normalizeString(bankCardNo);
   const isValid = realBankCardNo.length >= 3 && regNumber.test(realBankCardNo);
 
@@ -59,7 +59,7 @@ export function searchCardBin(bankCardNo: string, { multiple = false, data = car
 }
 
 // 验证银行卡号
-export function validateCardInfo(bankCardNo = '', { data = cards } = {}) {
+function validateCardInfo(bankCardNo = '', { data = cards } = {}) {
   const realBankCardNo = normalizeString(bankCardNo);
 
   const ret = {
@@ -68,7 +68,7 @@ export function validateCardInfo(bankCardNo = '', { data = cards } = {}) {
     message: ''
   };
 
-  let cardInfo: typeof cards[0] | null = null;
+  let cardInfo: (typeof cards)[0] | null = null;
 
   if (!isBankCard(realBankCardNo)) {
     ret.errorCode = ValidateErrorInfo.FormatError.code;
@@ -103,4 +103,4 @@ export function validateCardInfo(bankCardNo = '', { data = cards } = {}) {
   };
 }
 
-export { banks, cards, CardType, CardTypeName };
+export { banks, cards, CardType, CardTypeName, searchCardBin, validateCardInfo };
