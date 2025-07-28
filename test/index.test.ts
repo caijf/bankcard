@@ -88,6 +88,38 @@ describe('searchCardBin', () => {
     expect(searchCardBin(value2, { multiple: true })).toEqual([data2]);
   });
 
+  // 如622303和622305，16位是南京银行，18位是中国工商银行
+  it('multile', () => {
+    expect(searchCardBin('', { multiple: true })).toEqual([]);
+    expect(searchCardBin('622303')).toEqual({
+      bankName: '中国工商银行',
+      bankCode: 'ICBC',
+      cardBin: '622303',
+      cardType: 'DC',
+      cardTypeName: '储蓄卡',
+      len: 18
+    });
+
+    expect(searchCardBin('622303', { multiple: true })).toEqual([
+      {
+        bankName: '中国工商银行',
+        bankCode: 'ICBC',
+        cardBin: '622303',
+        cardType: 'DC',
+        cardTypeName: '储蓄卡',
+        len: 18
+      },
+      {
+        bankName: '南京银行',
+        bankCode: 'NJCB',
+        cardBin: '622303',
+        cardType: 'CC',
+        cardTypeName: '信用卡',
+        len: 16
+      }
+    ]);
+  });
+
   it('自定义数据', () => {
     const defineSearchCardBin = (cardNo = '', multiple = false) => {
       return searchCardBin(cardNo, { multiple, data: defineData });
@@ -98,6 +130,8 @@ describe('searchCardBin', () => {
 
     expect(defineSearchCardBin(value1, true)).toEqual([]);
     expect(defineSearchCardBin(value2, true)).toEqual([data2]);
+
+    expect(defineSearchCardBin('12345')).toBe(null);
   });
 
   it('undefined or null', () => {
@@ -105,6 +139,9 @@ describe('searchCardBin', () => {
     expect(searchCardBin()).toEqual(null);
     // @ts-ignore
     expect(searchCardBin(null)).toEqual(null);
+    // @ts-ignore
+    // 错误的自定义数据
+    expect(searchCardBin('12345', { data: [{}] })).toBe(null);
   });
 });
 
@@ -128,6 +165,44 @@ describe('validateCardInfo', () => {
     });
   });
 
+  // 如622303和622305，16位是南京银行，18位是中国工商银行
+  it('multile', () => {
+    expect(validateCardInfo('622303')).toEqual({
+      validated: false,
+      errorCode: '02',
+      message: '银行卡号格式错误',
+      cardInfo: null
+    });
+
+    expect(validateCardInfo('6223031234567890')).toEqual({
+      cardInfo: {
+        bankName: '南京银行',
+        bankCode: 'NJCB',
+        cardBin: '622303',
+        cardType: 'CC',
+        cardTypeName: '信用卡',
+        len: 16
+      },
+      errorCode: '',
+      message: '',
+      validated: true
+    });
+
+    expect(validateCardInfo('622303123456789012')).toEqual({
+      cardInfo: {
+        bankName: '中国工商银行',
+        bankCode: 'ICBC',
+        cardBin: '622303',
+        cardType: 'DC',
+        cardTypeName: '储蓄卡',
+        len: 18
+      },
+      errorCode: '',
+      message: '',
+      validated: true
+    });
+  });
+
   it('自定义数据', () => {
     const defineValidateCardInfo = (cardNo = '') => {
       return validateCardInfo(cardNo, { data: defineData });
@@ -140,6 +215,12 @@ describe('validateCardInfo', () => {
       cardInfo: null
     });
     expect(defineValidateCardInfo(value2.substring(0, 10))).toEqual({
+      validated: false,
+      errorCode: '02',
+      message: '银行卡号格式错误',
+      cardInfo: null
+    });
+    expect(defineValidateCardInfo(value2.substring(0, 17))).toEqual({
       validated: false,
       errorCode: '02',
       message: '银行卡号格式错误',

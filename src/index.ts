@@ -19,7 +19,7 @@ const ValidateErrorInfo = {
 const regNumber = /^\d+$/;
 
 // 匹配银行卡 bin
-function matchCardBin(bankCardNo = '', cardBin = '') {
+function matchCardBin(bankCardNo: string, cardBin: string) {
   if (!bankCardNo || !cardBin) {
     return false;
   }
@@ -59,7 +59,7 @@ function searchCardBin(bankCardNo: string, { multiple = false, data = cards } = 
 }
 
 // 验证银行卡号
-function validateCardInfo(bankCardNo = '', { data = cards } = {}) {
+function validateCardInfo(bankCardNo: string, { data = cards } = {}) {
   const realBankCardNo = normalizeString(bankCardNo);
 
   const ret = {
