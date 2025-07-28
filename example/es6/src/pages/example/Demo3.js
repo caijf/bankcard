@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { cards } from 'bankcard';
+import { cards, searchCardBin, validateCardInfo } from 'bankcard';
 import SyntaxHighlighter from "react-syntax-highlighter";
 import tomorrowNightEighties from "react-syntax-highlighter/dist/esm/styles/hljs/tomorrow-night-eighties";
 
