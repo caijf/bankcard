@@ -335,6 +335,7 @@ export default [
   { bin: '625966', bank: 'CCB', type: CC, len: 16 },
   { bin: '628317', bank: 'CCB', type: CC, len: 16 },
   { bin: '628366', bank: 'CCB', type: CC, len: 16 },
+  { bin: '621534', bank: 'CCB', type: DC, len: 19 },
 
   { bin: '621755', bank: 'CCQTGB', type: DC, len: 16 },
   { bin: '622945', bank: 'CCQTGB', type: DC, len: 16 },
@@ -1398,6 +1399,7 @@ export default [
   { bin: '621098', bank: 'PSBC', type: DC, len: 19 },
   { bin: '621285', bank: 'PSBC', type: DC, len: 19 },
   { bin: '621599', bank: 'PSBC', type: DC, len: 19 },
+  { bin: '621582', bank: 'PSBC', type: DC, len: 19 },
   { bin: '621674', bank: 'PSBC', type: DC, len: 19 },
   { bin: '621797', bank: 'PSBC', type: DC, len: 19 },
   { bin: '621798', bank: 'PSBC', type: DC, len: 19 },
