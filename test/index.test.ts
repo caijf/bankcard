@@ -50,7 +50,7 @@ describe('cards', () => {
   });
 
   it(`cards length`, () => {
-    expect(cards.length).toBe(1692);
+    expect(cards.length).toBe(1694);
   });
 });
 
