@@ -1394,6 +1394,7 @@ export default [
   { bin: '621010', bank: 'PLCCB', type: DC, len: 16 },
 
   { bin: '620062', bank: 'PSBC', type: DC, len: 19 },
+  { bin: '621622', bank: 'PSBC', type: DC, len: 19 },
   { bin: '621095', bank: 'PSBC', type: DC, len: 19 },
   { bin: '621096', bank: 'PSBC', type: DC, len: 19 },
   { bin: '621098', bank: 'PSBC', type: DC, len: 19 },
