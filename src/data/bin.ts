@@ -1309,6 +1309,9 @@ export default [
   { bin: '621726', bank: 'MTBANK', type: DC, len: 19 },
   { bin: '622740', bank: 'MTBANK', type: CC, len: 16 },
 
+  { bin: '666666', bank: 'MYBANK', type: DC, len: 16 },
+  { bin: '666873', bank: 'MYBANK', type: DC, len: 16 },
+
   { bin: '622367', bank: 'MYCCBANK', type: DC, len: 19 },
 
   { bin: '512431', bank: 'NBBANK', type: CC, len: 16 },
