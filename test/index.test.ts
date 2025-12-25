@@ -6,7 +6,7 @@ describe('banks', () => {
   });
 
   it('banks length', () => {
-    expect(banks.length).toBe(271);
+    expect(banks.length).toBe(274);
   });
 
   it(`some data`, () => {
@@ -50,7 +50,7 @@ describe('cards', () => {
   });
 
   it(`cards length`, () => {
-    expect(cards.length).toBe(1695);
+    expect(cards.length).toBe(1698);
   });
 });
 
