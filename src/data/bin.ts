@@ -1309,7 +1309,7 @@ export default [
   { bin: '621726', bank: 'MTBANK', type: DC, len: 19 },
   { bin: '622740', bank: 'MTBANK', type: CC, len: 16 },
 
-  { bin: '622367', bank: 'MYBANK', type: DC, len: 19 },
+  { bin: '622367', bank: 'MYCCBANK', type: DC, len: 19 },
 
   { bin: '512431', bank: 'NBBANK', type: CC, len: 16 },
   { bin: '520194', bank: 'NBBANK', type: CC, len: 16 },
@@ -1422,6 +1422,8 @@ export default [
   { bin: '625919', bank: 'PSBC', type: CC, len: 16 },
   { bin: '628310', bank: 'PSBC', type: CC, len: 16 },
   { bin: '955100', bank: 'PSBC', type: DC, len: 19 },
+
+  { bin: '62360066', bank: 'XWBANK', type: DC, len: 19 },
 
   { bin: '621089', bank: 'PZBANK', type: DC, len: 19 },
 
