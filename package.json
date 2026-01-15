@@ -5,6 +5,7 @@
   "main": "dist/bankcard.cjs.js",
   "module": "dist/bankcard.esm.js",
   "unpkg": "dist/bankcard.min.js",
+  "browser": "dist/bankcard.min.js",
   "types": "types/index.d.ts",
   "files": [
     "dist",
