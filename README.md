@@ -40,7 +40,7 @@ import { searchCardBin } from 'bankcard';
 searchCardBin('622305453434432224');
 ```
 
-- **`node`**
+- **`cjs`**
 
 ```javascript
 const { searchCardBin } = require('bankcard');
@@ -51,13 +51,16 @@ searchCardBin('622305453434432224');
 
 在浏览器中使用 `script` 标签直接引入文件，并使用全局变量 `bankcard` 。
 
-`npm` 包的 `bankcard/dist` 目录下提供了 `bankcard.js` 以及 `bankcard.min.js`。你也可以通过 [UNPKG](https://unpkg.com/bankcard@latest/dist/) 进行下载。或者在测试中直接使用 [UNPKG 线上版本](https://unpkg.com/bankcard@latest/dist/bankcard.min.js)<sup>注意版本</sup> 。
+`npm` 包的 [bankcard/dist](https://www.npmjs.com/package/bankcard?activeTab=code) 目录下提供了 `bankcard.js` 以及 `bankcard.min.js`。你也可以直接使用`cdn`：
 
-```javascript
-<script src="https://unpkg.com/bankcard@latest/dist/bankcard.min.js"></script>
+- jsdelivr: <https://cdn.jsdelivr.net/npm/bankcard@3>
+- unpkg: <https://unpkg.com/bankcard@3>
+
+```html
+<script src="https://unpkg.com/bankcard@3"></script>
 <script>
-  bankcard.searchCardBin("622305453434432224");
-  bankcard.validateCardInfo("622305453434432224");
+  bankcard.searchCardBin('622305453434432224');
+  bankcard.validateCardInfo('622305453434432224');
 </script>
 ```
 
@@ -111,9 +114,9 @@ validateCardInfo(bankCardNo: string, options?: {
 
 ```typescript
 {
-  validated: boolean, // 验证结果
+  validated: boolean; // 验证结果
   errorCode: string; // 错误码
-  message: string, // 错误信息
+  message: string; // 错误信息
   cardInfo: CardInfo | null; // 当验证成功返回 CardInfo ，否则返回 null
 }
 ```
