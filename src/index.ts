@@ -3,14 +3,19 @@ import { isBankCard, normalizeString } from './utils';
 
 export type CardInfo = (typeof cards)[0];
 
+/**找不到该银行卡号 */
+const NotFoundCode = '01';
+/**银行卡号格式错误 */
+const FormatErrorCode = '02';
+
 // 验证错误信息
-const ValidateErrorInfo = {
+const VALIDATE_ERROR_INFO = {
   NotFound: {
-    code: '01',
+    code: NotFoundCode,
     message: '找不到该银行卡号'
   },
   FormatError: {
-    code: '02',
+    code: FormatErrorCode,
     message: '银行卡号格式错误'
   }
 };
@@ -71,14 +76,14 @@ function validateCardInfo(bankCardNo: string, { data = cards } = {}) {
   let cardInfo: (typeof cards)[0] | null = null;
 
   if (!isBankCard(realBankCardNo)) {
-    ret.errorCode = ValidateErrorInfo.FormatError.code;
-    ret.message = ValidateErrorInfo.FormatError.message;
+    ret.errorCode = VALIDATE_ERROR_INFO.FormatError.code;
+    ret.message = VALIDATE_ERROR_INFO.FormatError.message;
   } else {
     const cardInfos = searchCardBin(realBankCardNo, { multiple: true, data });
 
     if (cardInfos.length <= 0) {
-      ret.errorCode = ValidateErrorInfo.NotFound.code;
-      ret.message = ValidateErrorInfo.NotFound.message;
+      ret.errorCode = VALIDATE_ERROR_INFO.NotFound.code;
+      ret.message = VALIDATE_ERROR_INFO.NotFound.message;
     } else {
       cardInfos.some((item) => {
         if (item.len === realBankCardNo.length) {
@@ -91,8 +96,8 @@ function validateCardInfo(bankCardNo: string, { data = cards } = {}) {
       if (cardInfo) {
         ret.validated = true;
       } else {
-        ret.errorCode = ValidateErrorInfo.FormatError.code;
-        ret.message = ValidateErrorInfo.FormatError.message;
+        ret.errorCode = VALIDATE_ERROR_INFO.FormatError.code;
+        ret.message = VALIDATE_ERROR_INFO.FormatError.message;
       }
     }
   }
