@@ -96,7 +96,7 @@ export default [
   { code: 'GSRCU', name: '甘肃省农村信用' },
   { code: 'GXHMVB', name: '长春高新惠民村镇银行' },
   { code: 'GXRCU', name: '广西省农村信用' },
-  { code: 'GYCB', name: '贵阳市商业银行' },
+  { code: 'GYCB', name: '贵阳银行' },
   { code: 'GZB', name: '赣州银行' },
   { code: 'GZRCU', name: '贵州省农村信用社' },
   { code: 'H3CB', name: '内蒙古银行' },
