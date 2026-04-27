@@ -266,7 +266,7 @@ export default [
   { code: 'ZHCCB', name: '珠海华润银行股份有限公司' },
   { code: 'ZJCCB', name: '镇江市商业银行' },
   { code: 'ZJKCCB', name: '张家口市商业银行' },
-  { code: 'ZJNX', name: '浙江省农村信用社联合社' },
+  { code: 'ZJNX', name: '浙江农村商业联合银行' },
   { code: 'ZJTLCB', name: '浙江泰隆商业银行' },
   { code: 'ZRCBANK', name: '张家港农村商业银行' },
   { code: 'ZYB', name: '中原银行' },
