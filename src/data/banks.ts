@@ -98,7 +98,7 @@ export default [
   { code: 'GXRCU', name: '广西省农村信用' },
   { code: 'GYCB', name: '贵阳银行' },
   { code: 'GZB', name: '赣州银行' },
-  { code: 'GZRCU', name: '贵州省农村信用社' },
+  { code: 'GZRCU', name: '贵州农商联合银行' },
   { code: 'H3CB', name: '内蒙古银行' },
   { code: 'HANABANK', name: '韩亚银行' },
   { code: 'HBC', name: '湖北银行' },
